@@ -1,4 +1,4 @@
-const { DataTypes } = require('sequelize');
+const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = require('../database');
 
 const Product = sequelize.define('Product', {
@@ -8,7 +8,6 @@ const Product = sequelize.define('Product', {
   },
   description: {
     type: DataTypes.STRING,
-    allowNull: false,
   },
   price: {
     type: DataTypes.FLOAT,
@@ -16,7 +15,7 @@ const Product = sequelize.define('Product', {
   },
   barcode: {
     type: DataTypes.STRING,
-    allowNull: false,
+    unique: true,
   },
 });
 

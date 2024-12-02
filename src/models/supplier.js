@@ -1,4 +1,4 @@
-const { DataTypes } = require('sequelize');
+const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = require('../database');
 
 const Supplier = sequelize.define('Supplier', {
@@ -8,15 +8,13 @@ const Supplier = sequelize.define('Supplier', {
   },
   cnpj: {
     type: DataTypes.STRING,
-    allowNull: false,
+    unique: true,
   },
   address: {
     type: DataTypes.STRING,
-    allowNull: false,
   },
   contact: {
     type: DataTypes.STRING,
-    allowNull: false,
   },
 });
 
