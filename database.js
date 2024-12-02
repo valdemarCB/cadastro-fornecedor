@@ -1,9 +1,9 @@
 const { Sequelize } = require('sequelize');
 
-// Criação da instância do Sequelize para o banco SQLite
+// Instancia do Sequelize
 const sequelize = new Sequelize({
   dialect: 'sqlite',
-  storage: './database.sqlite', // Caminho do banco de dados
+  storage: './src/database.sqlite', // Localização do banco de dados SQLite
 });
 
 module.exports = sequelize;

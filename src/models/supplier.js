@@ -1,6 +1,7 @@
 const { Sequelize, DataTypes } = require('sequelize');
-const sequelize = require('../database');
+const sequelize = require('../database'); // Caminho correto
 
+// Definição do modelo Fornecedor
 const Supplier = sequelize.define('Supplier', {
   name: {
     type: DataTypes.STRING,
@@ -9,6 +10,7 @@ const Supplier = sequelize.define('Supplier', {
   cnpj: {
     type: DataTypes.STRING,
     unique: true,
+    allowNull: false,
   },
   address: {
     type: DataTypes.STRING,

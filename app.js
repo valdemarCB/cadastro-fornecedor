@@ -1,17 +1,18 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-const sequelize = require('./database'); // Conexão com o banco de dados
+const sequelize = require('./src/database'); // Ajuste o caminho aqui
 
-// Modelos (certifique-se de criar os arquivos dos modelos, como product.js e supplier.js)
-const Product = require('./models/product');
-const Supplier = require('./models/supplier');
+// Modelos
+const Product = require('./src/models/product');
+const Supplier = require('./src/models/supplier');
+const ProductSupplier = require('./src/models/productSupplier');
 
-// Controladores (certifique-se de criar os arquivos de controladores, como productController.js)
-const productController = require('./controllers/productController');
-const supplierController = require('./controllers/supplierController');
+// Controladores
+const productController = require('./src/controllers/productController');
+const supplierController = require('./src/controllers/supplierController');
 
-// Middleware para o Express entender JSON no corpo da requisição
+// Middleware para o Express entender JSON
 app.use(bodyParser.json());
 
 // Testando a rota raiz
@@ -19,19 +20,19 @@ app.get('/', (req, res) => {
   res.send('Olá, Mundo!');
 });
 
-// **Rotas para Produto** (CRUD)
-app.post('/products', productController.createProduct); // Cria um novo produto
-app.get('/products', productController.getAllProducts); // Lista todos os produtos
-app.get('/products/:id', productController.getProductById); // Busca produto por ID
-app.put('/products/:id', productController.updateProduct); // Atualiza um produto
-app.delete('/products/:id', productController.deleteProduct); // Deleta um produto
+// Rotas para Produto
+app.post('/products', productController.createProduct);
+app.get('/products', productController.getAllProducts);
+app.get('/products/:id', productController.getProductById);
+app.put('/products/:id', productController.updateProduct);
+app.delete('/products/:id', productController.deleteProduct);
 
-// **Rotas para Fornecedor** (CRUD)
-app.post('/suppliers', supplierController.createSupplier); // Cria um novo fornecedor
-app.get('/suppliers', supplierController.getAllSuppliers); // Lista todos os fornecedores
-app.get('/suppliers/:id', supplierController.getSupplierById); // Busca fornecedor por ID
-app.put('/suppliers/:id', supplierController.updateSupplier); // Atualiza um fornecedor
-app.delete('/suppliers/:id', supplierController.deleteSupplier); // Deleta um fornecedor
+// Rotas para Fornecedor
+app.post('/suppliers', supplierController.createSupplier);
+app.get('/suppliers', supplierController.getAllSuppliers);
+app.get('/suppliers/:id', supplierController.getSupplierById);
+app.put('/suppliers/:id', supplierController.updateSupplier);
+app.delete('/suppliers/:id', supplierController.deleteSupplier);
 
 // Sincronizando o banco de dados e iniciando o servidor
 sequelize.sync().then(() => {

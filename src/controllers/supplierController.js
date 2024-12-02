@@ -1,6 +1,6 @@
 const Supplier = require('../models/supplier');
 
-// Criar Fornecedor
+// Criar um novo fornecedor
 exports.createSupplier = async (req, res) => {
   try {
     const supplier = await Supplier.create(req.body);
@@ -10,31 +10,31 @@ exports.createSupplier = async (req, res) => {
   }
 };
 
-// Listar Todos os Fornecedores
+// Listar todos os fornecedores
 exports.getAllSuppliers = async (req, res) => {
   try {
     const suppliers = await Supplier.findAll();
     res.status(200).json(suppliers);
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(500).json({ error: error.message });
   }
 };
 
-// Buscar Fornecedor por ID
+// Buscar um fornecedor pelo ID
 exports.getSupplierById = async (req, res) => {
   try {
     const supplier = await Supplier.findByPk(req.params.id);
     if (supplier) {
       res.status(200).json(supplier);
     } else {
-      res.status(404).json({ message: 'Fornecedor não encontrado' });
+      res.status(404).json({ error: 'Fornecedor não encontrado' });
     }
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(500).json({ error: error.message });
   }
 };
 
-// Atualizar Fornecedor
+// Atualizar um fornecedor
 exports.updateSupplier = async (req, res) => {
   try {
     const supplier = await Supplier.findByPk(req.params.id);
@@ -42,14 +42,14 @@ exports.updateSupplier = async (req, res) => {
       await supplier.update(req.body);
       res.status(200).json(supplier);
     } else {
-      res.status(404).json({ message: 'Fornecedor não encontrado' });
+      res.status(404).json({ error: 'Fornecedor não encontrado' });
     }
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(500).json({ error: error.message });
   }
 };
 
-// Deletar Fornecedor
+// Deletar um fornecedor
 exports.deleteSupplier = async (req, res) => {
   try {
     const supplier = await Supplier.findByPk(req.params.id);
@@ -57,9 +57,9 @@ exports.deleteSupplier = async (req, res) => {
       await supplier.destroy();
       res.status(204).send();
     } else {
-      res.status(404).json({ message: 'Fornecedor não encontrado' });
+      res.status(404).json({ error: 'Fornecedor não encontrado' });
     }
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(500).json({ error: error.message });
   }
 };
