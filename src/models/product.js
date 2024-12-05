@@ -1,7 +1,7 @@
 const { Sequelize, DataTypes } = require('sequelize');
-const sequelize = require('../database'); // Caminho correto
+const sequelize = require('../database'); // Correto, pois o 'database.js' está dentro de 'src'
 
-// Definição do modelo Produto
+// Definindo o modelo de Produto
 const Product = sequelize.define('Product', {
   name: {
     type: DataTypes.STRING,
